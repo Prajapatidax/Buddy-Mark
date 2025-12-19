@@ -31,7 +31,7 @@ Users can register their face and later be recognized from uploaded images with 
 
 ---
 
-## 📁 Project Structure
+## 📁 Project Structure/
 ├── app.py
 ├── faces.db
 ├── static/
