@@ -31,13 +31,13 @@ Users can register their face and later be recognized from uploaded images with 
 
 ---
 
-## 📁 Project Structure/
-├── app.py
-├── faces.db
-├── static/
-│ └── uploads/
-├── templates/
-│ └── index.html
+## 📁 Project Structure
+├── app.py <br>
+├── faces.db <br>
+├── static/ <br>
+│ └── uploads/ <br>
+├── templates/ <br>
+│ └── index.html <br>
 └── README.md
 
 
