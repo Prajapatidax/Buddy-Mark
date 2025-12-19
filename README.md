@@ -68,7 +68,7 @@ BuddyAI is an intelligent assistant integrated into BuddyMark that helps student
 
 This project is developed as a **team collaboration**, where each member contributed to different aspects of the system.
 
-- **Dax Prajapati** – Lead Developer, System Design, AI Integration  
+- **Dax ** – Lead Developer, System Design, AI Integration  
 - **Het** – Idea Contribution, UI Support, Testing  
 - **Ayush** – Requirement Analysis, Feature Planning, Testing  
 - **Hardi** – Documentation, UI Feedback, Functional Testing  
@@ -101,4 +101,5 @@ Full Stack Developer | AI Enthusiast
 ## ⭐ Support
 
 If you find BuddyMark useful, please **star ⭐ the repository** and share it with others.
+
 
