@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management System - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="page active" id="loginPage">
+        <div class="auth-container">
+            <div class="auth-card">
+                <!-- Branding -->
+                <div class="branding">
+                    <div class="logo">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="#4F46E5"/>
+                            <path d="M24 14L32 20V34H28V26H20V34H16V20L24 14Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h1 class="title">Attendance Management System(BuddyMark)</h1>
+                    <p class="subtitle">Sign in to access your account</p>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form" novalidate>
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="loginEmail" class="form-label">Email Address</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M3 4h14a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M2 5l8 5 8-5" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <input 
+                                type="email" 
+                                id="loginEmail" 
+                                class="form-input" 
+                                placeholder="you@example.com"
+                                required
+                            >
+                        </div>
+                        <span class="error-message" id="loginEmailError"></span>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <rect x="3" y="8" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M6 8V6a4 4 0 118 0v2" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <input 
+                                type="password" 
+                                id="loginPassword" 
+                                class="form-input" 
+                                placeholder="Enter your password"
+                                required
+                            >
+                            <button type="button" class="password-toggle" id="loginPasswordToggle">
+                                <svg class="eye-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M10 4C5 4 1.73 7.11 1 10c.73 2.89 4 6 9 6s8.27-3.11 9-6c-.73-2.89-4-6-9-6z" stroke="currentColor" stroke-width="1.5"/>
+                                    <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <span class="error-message" id="loginPasswordError"></span>
+                    </div>
+
+                    <!-- Role Selector -->
+                    <div class="form-group">
+                        <label class="form-label">Login As</label>
+                        <div class="role-selector">
+                            <label class="role-option">
+                                <input type="radio" name="loginRole" value="student" checked>
+                                <div class="role-card">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                    <span class="role-title">Student</span>
+                                </div>
+                            </label>
+                            <label class="role-option">
+                                <input type="radio" name="loginRole" value="admin">
+                                <div class="role-card">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 2L2 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                    <span class="role-title">Admin</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="link" id="forgotPasswordLink">Forgot password?</a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary" id="loginBtn">
+                        <span class="btn-text">Sign In</span>
+                        <span class="btn-loader"></span>
+                    </button>
+                </form>
+
+                <!-- Footer -->
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" class="link" id="goToSignup">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Page -->
+    <div class="page" id="signupPage">
+        <div class="auth-container">
+            <div class="auth-card">
+                <!-- Branding -->
+                <div class="branding">
+                    <div class="logo">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="#4F46E5"/>
+                            <path d="M24 14L32 20V34H28V26H20V34H16V20L24 14Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h1 class="title">Create Account</h1>
+                    <p class="subtitle">Join our attendance management system(BuddyMark)</p>
+                </div>
+
+                <!-- Signup Form -->
+                <form id="signupForm" class="auth-form" novalidate>
+                    <!-- Full Name Field -->
+                    <div class="form-group">
+                        <label for="signupName" class="form-label">Full Name</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="6" r="4" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M4 18a6 6 0 0112 0" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <input 
+                                type="text" 
+                                id="signupName" 
+                                class="form-input" 
+                                placeholder="John Doe"
+                                required
+                            >
+                            <span class="validation-icon"></span>
+                        </div>
+                        <span class="error-message" id="signupNameError"></span>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="signupEmail" class="form-label">Email Address</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M3 4h14a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M2 5l8 5 8-5" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <input 
+                                type="email" 
+                                id="signupEmail" 
+                                class="form-input" 
+                                placeholder="you@example.com"
+                                required
+                            >
+                            <span class="validation-icon"></span>
+                        </div>
+                        <span class="error-message" id="signupEmailError"></span>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="signupPassword" class="form-label">Password</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <rect x="3" y="8" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M6 8V6a4 4 0 118 0v2" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <input 
+                                type="password" 
+                                id="signupPassword" 
+                                class="form-input" 
+                                placeholder="Create a strong password"
+                                required
+                            >
+                            <button type="button" class="password-toggle" id="signupPasswordToggle">
+                                <svg class="eye-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M10 4C5 4 1.73 7.11 1 10c.73 2.89 4 6 9 6s8.27-3.11 9-6c-.73-2.89-4-6-9-6z" stroke="currentColor" stroke-width="1.5"/>
+                                    <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-bars">
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                            </div>
+                            <span class="strength-text">Enter a password</span>
+                        </div>
+                        <span class="error-message" id="signupPasswordError"></span>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div class="form-group">
+                        <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <rect x="3" y="8" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M6 8V6a4 4 0 118 0v2" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <input 
+                                type="password" 
+                                id="signupConfirmPassword" 
+                                class="form-input" 
+                                placeholder="Confirm your password"
+                                required
+                            >
+                            <button type="button" class="password-toggle" id="signupConfirmPasswordToggle">
+                                <svg class="eye-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M10 4C5 4 1.73 7.11 1 10c.73 2.89 4 6 9 6s8.27-3.11 9-6c-.73-2.89-4-6-9-6z" stroke="currentColor" stroke-width="1.5"/>
+                                    <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </button>
+                            <span class="validation-icon"></span>
+                        </div>
+                        <span class="error-message" id="signupConfirmPasswordError"></span>
+                    </div>
+
+                    <!-- Role Selector -->
+                    <div class="form-group">
+                        <label class="form-label">Register As</label>
+                        <div class="role-selector">
+                            <label class="role-option">
+                                <input type="radio" name="signupRole" value="student" checked>
+                                <div class="role-card">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                    <span class="role-title">Student</span>
+                                    <span class="role-desc">Access attendance records</span>
+                                </div>
+                            </label>
+                            <label class="role-option">
+                                <input type="radio" name="signupRole" value="admin">
+                                <div class="role-card">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 2L2 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                    <span class="role-title">Admin</span>
+                                    <span class="role-desc">Manage attendance system</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Student ID Field (conditional) -->
+                    <div class="form-group" id="studentIdGroup">
+                        <label for="studentId" class="form-label">Student ID</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="7" cy="9" r="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M12 8h3M12 11h3" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <input 
+                                type="text" 
+                                id="studentId" 
+                                class="form-input" 
+                                placeholder="e.g., STU123456"
+                                required
+                            >
+                            <span class="validation-icon"></span>
+                        </div>
+                        <span class="error-message" id="studentIdError"></span>
+                    </div>
+
+                    <!-- Admin Code Field (conditional) -->
+                    <div class="form-group hidden" id="adminCodeGroup">
+                        <label for="adminCode" class="form-label">Admin Code</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 2L2 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <input 
+                                type="text" 
+                                id="adminCode" 
+                                class="form-input" 
+                                placeholder="e.g., ADMIN12345"
+                            >
+                            <span class="validation-icon"></span>
+                        </div>
+                        <span class="error-message" id="adminCodeError"></span>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="termsCheckbox" required>
+                            <span>I agree to the <a href="#" class="link">Terms &amp; Conditions</a></span>
+                        </label>
+                        <span class="error-message" id="termsError"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary" id="signupBtn">
+                        <span class="btn-text">Create Account</span>
+                        <span class="btn-loader"></span>
+                    </button>
+                </form>
+
+                <!-- Footer -->
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" class="link" id="goToLogin">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon"></div>
+        <div class="toast-content">
+            <div class="toast-title">Success</div>
+            <div class="toast-message">Action completed successfully</div>
+        </div>
+        <button class="toast-close" id="toastClose">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Modal for Forgot Password -->
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Password Recovery</h3>
+                <button class="modal-close" id="modalClose">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your email address and we'll send you instructions to reset your password.</p>
+                <div class="form-group">
+                    <label for="recoveryEmail" class="form-label">Email Address</label>
+                    <input type="email" id="recoveryEmail" class="form-input" placeholder="you@example.com">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modalCancelBtn">Cancel</button>
+                <button class="btn btn-primary" id="modalSendBtn">Send Instructions</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
