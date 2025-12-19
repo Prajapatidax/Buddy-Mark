@@ -1,1 +1,2407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Academic Portal</title>
+    <style>
+        /* Design System */
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-red-400-rgb: 255, 84, 89;
+            --color-orange-500-rgb: 168, 75, 47;
+            --color-orange-400-rgb: 230, 129, 97;
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-bg-5: rgba(147, 51, 234, 0.08);
+            --color-bg-6: rgba(249, 115, 22, 0.08);
+            --color-bg-7: rgba(236, 72, 153, 0.08);
+            --color-bg-8: rgba(6, 182, 212, 0.08);
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-error: var(--color-red-500);
+            --color-success: var(--color-teal-500);
+            --color-warning: var(--color-orange-500);
+            --color-info: var(--color-slate-500);
+            --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+            --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+            --focus-ring: 0 0 0 3px var(--color-focus-ring);
+            --focus-outline: 2px solid var(--color-primary);
+            --status-bg-opacity: 0.15;
+            --status-border-opacity: 0.25;
+            --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-md: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --letter-spacing-tight: -0.01em;
+            --space-0: 0;
+            --space-1: 1px;
+            --space-2: 2px;
+            --space-4: 4px;
+            --space-6: 6px;
+            --space-8: 8px;
+            --space-10: 10px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-md: 10px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-gray-400-rgb: 119, 124, 124;
+                --color-teal-300-rgb: 50, 184, 198;
+                --color-gray-300-rgb: 167, 169, 169;
+                --color-gray-200-rgb: 245, 245, 245;
+                --color-bg-1: rgba(29, 78, 216, 0.15);
+                --color-bg-2: rgba(180, 83, 9, 0.15);
+                --color-bg-3: rgba(21, 128, 61, 0.15);
+                --color-bg-4: rgba(185, 28, 28, 0.15);
+                --color-bg-5: rgba(107, 33, 168, 0.15);
+                --color-bg-6: rgba(194, 65, 12, 0.15);
+                --color-bg-7: rgba(190, 24, 93, 0.15);
+                --color-bg-8: rgba(8, 145, 178, 0.15);
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+                --color-primary: var(--color-teal-300);
+                --color-primary-hover: var(--color-teal-400);
+                --color-primary-active: var(--color-teal-800);
+                --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+                --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+                --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-error: var(--color-red-400);
+                --color-success: var(--color-teal-300);
+                --color-warning: var(--color-orange-400);
+                --color-info: var(--color-gray-300);
+                --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+                --color-btn-primary-text: var(--color-slate-900);
+                --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+                --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+                --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: var(--line-height-normal);
+            font-size: var(--font-size-base);
+        }
+
+        /* Layout */
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: var(--color-surface);
+            border-right: 1px solid var(--color-card-border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: transform var(--duration-normal) var(--ease-standard);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: var(--space-20);
+            border-bottom: 1px solid var(--color-card-border);
+        }
+
+        .logo {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .nav-menu {
+            padding: var(--space-16);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            padding: var(--space-12) var(--space-16);
+            margin-bottom: var(--space-4);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-standard);
+            color: var(--color-text-secondary);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .nav-item:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+        }
+
+        .nav-item.active {
+            background-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .nav-icon {
+            font-size: var(--font-size-xl);
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            transition: margin-left var(--duration-normal) var(--ease-standard);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-card-border);
+            padding: var(--space-16) var(--space-24);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: var(--font-size-2xl);
+            cursor: pointer;
+            color: var(--color-text);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-20);
+        }
+
+        .current-datetime {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .current-date {
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+        }
+
+        .notification-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: var(--font-size-2xl);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background-color: var(--color-error);
+            color: white;
+            border-radius: var(--radius-full);
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-700));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-lg);
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-base);
+        }
+
+        .user-role {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: var(--space-24);
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: var(--space-24);
+        }
+
+        .section-title {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-8);
+        }
+
+        .section-description {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-base);
+        }
+
+        /* Dashboard Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-20);
+            margin-bottom: var(--space-32);
+        }
+
+        .stat-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-20);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .stat-icon {
+            font-size: var(--font-size-3xl);
+        }
+
+        .stat-trend {
+            font-size: var(--font-size-sm);
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-sm);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .stat-trend.positive {
+            background-color: rgba(var(--color-teal-500-rgb), 0.1);
+            color: var(--color-success);
+        }
+
+        .stat-trend.negative {
+            background-color: rgba(var(--color-red-500-rgb), 0.1);
+            color: var(--color-error);
+        }
+
+        .stat-value {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-4);
+        }
+
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        .stat-status {
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-8);
+            color: var(--color-text-secondary);
+        }
+
+        /* Content Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-20);
+        }
+
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-20);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-16);
+        }
+
+        /* Activity Feed */
+        .activity-item {
+            display: flex;
+            gap: var(--space-12);
+            padding: var(--space-12);
+            border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background-color: var(--color-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-lg);
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-action {
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--space-4);
+        }
+
+        .activity-details {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .activity-time {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-4);
+        }
+
+        /* Attendance */
+        .attendance-filters {
+            display: flex;
+            gap: var(--space-12);
+            margin-bottom: var(--space-20);
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: var(--space-8) var(--space-12);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            font-size: var(--font-size-base);
+            cursor: pointer;
+            font-family: var(--font-family-base);
+        }
+
+        .attendance-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-16);
+            margin-bottom: var(--space-24);
+        }
+
+        .attendance-stat {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            text-align: center;
+        }
+
+        .attendance-stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-4);
+        }
+
+        .attendance-stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .attendance-table {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: var(--color-secondary);
+        }
+
+        th {
+            padding: var(--space-12) var(--space-16);
+            text-align: left;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        td {
+            padding: var(--space-12) var(--space-16);
+            border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: var(--color-secondary);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: var(--space-4) var(--space-12);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .status-present {
+            background-color: rgba(var(--color-teal-500-rgb), 0.15);
+            color: var(--color-success);
+        }
+
+        .status-absent {
+            background-color: rgba(var(--color-red-500-rgb), 0.15);
+            color: var(--color-error);
+        }
+
+        .status-leave {
+            background-color: rgba(var(--color-orange-500-rgb), 0.15);
+            color: var(--color-warning);
+        }
+
+        /* Subject Progress Bars */
+        .subject-progress {
+            margin-bottom: var(--space-16);
+        }
+
+        .subject-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-8);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--color-secondary);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--color-primary);
+            border-radius: var(--radius-full);
+            transition: width var(--duration-normal) var(--ease-standard);
+        }
+
+        /* Classwork & Assignments */
+        .work-item {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-16);
+            margin-bottom: var(--space-16);
+            transition: all var(--duration-fast) var(--ease-standard);
+        }
+
+        .work-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-12);
+        }
+
+        .work-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-4);
+        }
+
+        .work-subject {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .work-description {
+            margin-bottom: var(--space-12);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        .work-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-12);
+        }
+
+        .due-date {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .due-date.urgent {
+            color: var(--color-error);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .due-date.warning {
+            color: var(--color-warning);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .btn {
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-base);
+            border: none;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-standard);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-6);
+            font-family: var(--font-family-base);
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-secondary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-secondary);
+        }
+
+        .btn-sm {
+            padding: var(--space-6) var(--space-12);
+            font-size: var(--font-size-xs);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-20);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            padding: var(--space-20);
+            border-bottom: 1px solid var(--color-card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: var(--font-size-2xl);
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-base);
+        }
+
+        .modal-close:hover {
+            background-color: var(--color-secondary);
+        }
+
+        .modal-body {
+            padding: var(--space-20);
+        }
+
+        .modal-footer {
+            padding: var(--space-20);
+            border-top: 1px solid var(--color-card-border);
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--space-12);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: var(--space-16);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-8);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-sm);
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: var(--space-10) var(--space-12);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-base);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: var(--focus-ring);
+        }
+
+        .file-upload {
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-20);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-standard);
+        }
+
+        .file-upload:hover {
+            border-color: var(--color-primary);
+            background-color: var(--color-secondary);
+        }
+
+        .file-upload input {
+            display: none;
+        }
+
+        .file-name {
+            margin-top: var(--space-8);
+            font-size: var(--font-size-sm);
+            color: var(--color-success);
+        }
+
+        /* Results/Grades */
+        .grade-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-20);
+            margin-bottom: var(--space-16);
+        }
+
+        .grade-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-16);
+        }
+
+        .subject-info h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-4);
+        }
+
+        .subject-code {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .grade-badge {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-full);
+            background-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+        }
+
+        .grade-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-16);
+        }
+
+        .grade-item {
+            text-align: center;
+        }
+
+        .grade-label {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .grade-value {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+        }
+
+        .gpa-display {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-700));
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            text-align: center;
+            margin-bottom: var(--space-24);
+        }
+
+        .gpa-label {
+            font-size: var(--font-size-base);
+            opacity: 0.9;
+            margin-bottom: var(--space-8);
+        }
+
+        .gpa-value {
+            font-size: 64px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-8);
+        }
+
+        .gpa-max {
+            font-size: var(--font-size-lg);
+            opacity: 0.8;
+        }
+
+        /* Profile */
+        .profile-section {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            margin-bottom: var(--space-20);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-20);
+            margin-bottom: var(--space-24);
+            padding-bottom: var(--space-24);
+            border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-700));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .profile-details {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-4);
+        }
+
+        .profile-id {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-12);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-16);
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-medium);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: var(--space-24);
+            right: var(--space-24);
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16) var(--space-20);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            z-index: 3000;
+            transform: translateY(150%);
+            transition: transform var(--duration-normal) var(--ease-standard);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+
+        .toast-icon {
+            font-size: var(--font-size-xl);
+        }
+
+        .toast-message {
+            font-weight: var(--font-weight-medium);
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--color-success);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--color-error);
+        }
+
+        .toast.warning {
+            border-left: 4px solid var(--color-warning);
+        }
+
+        /* Search Bar */
+        .search-bar {
+            position: relative;
+            margin-bottom: var(--space-20);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--space-12) var(--space-16) var(--space-12) 44px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-base);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: var(--space-16);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-secondary);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: var(--space-32);
+            color: var(--color-text-secondary);
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: var(--space-16);
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .current-datetime {
+                display: none;
+            }
+
+            .content-area {
+                padding: var(--space-16);
+            }
+
+            table {
+                font-size: var(--font-size-sm);
+            }
+
+            th, td {
+                padding: var(--space-8) var(--space-12);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: var(--space-12) var(--space-16);
+            }
+
+            .section-title {
+                font-size: var(--font-size-2xl);
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .modal {
+                max-width: 100%;
+                border-radius: 0;
+            }
+        }
+
+        /* Settings */
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-16);
+            border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-label {
+            font-weight: var(--font-weight-medium);
+        }
+
+        .setting-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-4);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background-color: var(--color-secondary);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: background-color var(--duration-fast) var(--ease-standard);
+        }
+
+        .toggle-switch.active {
+            background-color: var(--color-primary);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: var(--radius-full);
+            transition: transform var(--duration-fast) var(--ease-standard);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">🎓 BuddyMark</div>
+            </div>
+            <nav class="nav-menu">
+                <div class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item" data-section="attendance">
+                    <span class="nav-icon">📅</span>
+                    <span>Attendance</span>
+                </div>
+                <div class="nav-item" data-section="classwork">
+                    <span class="nav-icon">📚</span>
+                    <span>Classwork</span>
+                </div>
+                <div class="nav-item" data-section="assignments">
+                    <span class="nav-icon">📝</span>
+                    <span>Assignments</span>
+                </div>
+                <div class="nav-item" data-section="results">
+                    <span class="nav-icon">🏆</span>
+                    <span>Results</span>
+                </div>
+                <div class="nav-item" data-section="profile">
+                    <span class="nav-icon">👤</span>
+                    <span>Profile</span>
+                </div>
+                <div class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">☰</button>
+                    <h1 class="section-title" id="headerTitle">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="current-datetime">
+                        <span class="current-date" id="currentDate"></span>
+                        <span class="current-time" id="currentTime"></span>
+                    </div>
+                    <div class="notification-icon">
+                        🔔
+                        <span class="notification-badge" id="notificationBadge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-avatar">S1</div>
+                        <div class="user-info">
+                            <div class="user-name" id="userName"></div>
+                            <div class="user-role">Student</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard Section -->
+                <section class="page-section active" id="section-dashboard">
+                    <div class="section-header">
+                        <p class="section-description">Welcome back! Here's your academic overview.</p>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="stats-grid" id="statsGrid"></div>
+
+                    <!-- Content Grid -->
+                    <div class="content-grid">
+                        <!-- Recent Activity -->
+                        <div class="card">
+                            <h2 class="card-title">Recent Activity</h2>
+                            <div id="recentActivity"></div>
+                        </div>
+
+                        <!-- Upcoming Deadlines -->
+                        <div class="card">
+                            <h2 class="card-title">Upcoming Deadlines</h2>
+                            <div id="upcomingDeadlines"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Attendance Section -->
+                <section class="page-section" id="section-attendance">
+                    <div class="section-header">
+                        <p class="section-description">Track your attendance across all subjects.</p>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="attendance-filters">
+                        <select class="filter-select" id="attendanceSubjectFilter">
+                            <option value="all">All Subjects</option>
+                        </select>
+                        <select class="filter-select" id="attendanceMonthFilter">
+                            <option value="all">All Months</option>
+                            <option value="11">November 2025</option>
+                            <option value="10">October 2025</option>
+                            <option value="9">September 2025</option>
+                        </select>
+                    </div>
+
+                    <!-- Attendance Summary -->
+                    <div class="attendance-summary" id="attendanceSummary"></div>
+
+                    <!-- Subject-wise Attendance -->
+                    <div class="card" style="margin-bottom: 20px;">
+                        <h2 class="card-title">Attendance by Subject</h2>
+                        <div id="subjectAttendance"></div>
+                    </div>
+
+                    <!-- Attendance Table -->
+                    <div class="attendance-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Subject</th>
+                                    <th>Status</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendanceTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Classwork Section -->
+                <section class="page-section" id="section-classwork">
+                    <div class="section-header">
+                        <p class="section-description">View and manage your assigned classwork.</p>
+                    </div>
+
+                    <!-- Search and Filter -->
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" id="classworkSearch" placeholder="Search classwork...">
+                    </div>
+
+                    <div class="attendance-filters">
+                        <select class="filter-select" id="classworkSubjectFilter">
+                            <option value="all">All Subjects</option>
+                        </select>
+                        <select class="filter-select" id="classworkStatusFilter">
+                            <option value="all">All Status</option>
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+
+                    <!-- Classwork List -->
+                    <div id="classworkList"></div>
+                </section>
+
+                <!-- Assignments Section -->
+                <section class="page-section" id="section-assignments">
+                    <div class="section-header">
+                        <p class="section-description">Submit assignments and track your submissions.</p>
+                    </div>
+
+                    <!-- Search and Filter -->
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" id="assignmentSearch" placeholder="Search assignments...">
+                    </div>
+
+                    <div class="attendance-filters">
+                        <select class="filter-select" id="assignmentSubjectFilter">
+                            <option value="all">All Subjects</option>
+                        </select>
+                        <select class="filter-select" id="assignmentStatusFilter">
+                            <option value="all">All Status</option>
+                            <option value="Not Submitted">Not Submitted</option>
+                            <option value="Submitted">Submitted</option>
+                            <option value="Graded">Graded</option>
+                        </select>
+                    </div>
+
+                    <!-- Assignment List -->
+                    <div id="assignmentList"></div>
+                </section>
+
+                <!-- Results Section -->
+                <section class="page-section" id="section-results">
+                    <div class="section-header">
+                        <p class="section-description">View your semester results and GPA.</p>
+                    </div>
+
+                    <!-- GPA Display -->
+                    <div class="gpa-display">
+                        <div class="gpa-label">Overall GPA</div>
+                        <div class="gpa-value" id="gpaValue">8.2</div>
+                        <div class="gpa-max">out of 10.0</div>
+                    </div>
+
+                    <!-- Results Tabs -->
+                    <div class="attendance-filters">
+                        <button class="btn btn-primary" id="midSemTab">Mid Semester</button>
+                        <button class="btn btn-secondary" id="finalSemTab">Final Semester</button>
+                        <button class="btn btn-secondary" id="overallTab">Overall</button>
+                    </div>
+
+                    <!-- Results Content -->
+                    <div id="resultsContent"></div>
+                </section>
+
+                <!-- Profile Section -->
+                <section class="page-section" id="section-profile">
+                    <div class="section-header">
+                        <p class="section-description">View and manage your profile information.</p>
+                    </div>
+
+                    <div class="profile-section">
+                        <div class="profile-header">
+                            <div class="profile-avatar">S1</div>
+                            <div class="profile-details">
+                                <h2 class="profile-name" id="profileName">student1</h2>
+                                <p class="profile-id" id="profileId">STU001234</p>
+                                <button class="btn btn-outline btn-sm">Edit Profile</button>
+                            </div>
+                        </div>
+
+                        <div class="info-grid" id="profileInfo"></div>
+                    </div>
+
+                    <!-- Academic Information -->
+                    <div class="profile-section">
+                        <h3 style="margin-bottom: 16px; font-size: 20px;">Academic Information</h3>
+                        <div class="info-grid" id="academicInfo"></div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section class="page-section" id="section-settings">
+                    <div class="section-header">
+                        <p class="section-description">Customize your dashboard preferences.</p>
+                    </div>
+
+                    <div class="card">
+                        <h2 class="card-title">Appearance</h2>
+                        <div class="setting-item">
+                            <div>
+                                <div class="setting-label">Dark Mode</div>
+                                <div class="setting-description">Switch between light and dark theme</div>
+                            </div>
+                            <div class="toggle-switch" id="darkModeToggle">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top: 20px;">
+                        <h2 class="card-title">Notifications</h2>
+                        <div class="setting-item">
+                            <div>
+                                <div class="setting-label">Assignment Reminders</div>
+                                <div class="setting-description">Get notified about upcoming deadlines</div>
+                            </div>
+                            <div class="toggle-switch active">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div>
+                                <div class="setting-label">Grade Updates</div>
+                                <div class="setting-description">Receive notifications when grades are posted</div>
+                            </div>
+                            <div class="toggle-switch active">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Assignment Submission -->
+    <div class="modal-overlay" id="assignmentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Submit Assignment</h2>
+                <button class="modal-close" id="modalClose">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <!-- Dynamic buttons will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toastIcon">✓</span>
+        <span class="toast-message" id="toastMessage">Action completed successfully</span>
+    </div>
+
+    <script>
+        // Data Storage
+        const appData = {
+            student: {
+                id: "STU001234",
+                name: "student1",
+                email: "arjun.kumar@college.edu",
+                phone: "+91-9876543210",
+                semester: 5,
+                department: "Computer Science",
+                batch: "2022-2026"
+            },
+            subjects: [
+                { id: 1, name: "Data Structures", code: "CS301", instructor: "Dr. Rajesh Kumar" },
+                { id: 2, name: "Web Development", code: "CS305", instructor: "Prof. Neha Singh" },
+                { id: 3, name: "Database Management", code: "CS302", instructor: "Dr. Amit Verma" },
+                { id: 4, name: "Artificial Intelligence", code: "CS304", instructor: "Prof. Priya Sharma" },
+                { id: 5, name: "Software Engineering", code: "CS303", instructor: "Dr. Vikram Patel" }
+            ],
+            metrics: {
+                totalAttendance: 87.5,
+                pendingAssignments: 3,
+                averageGPA: 8.2,
+                classworkCompletion: 92
+            },
+            dashboardCards: [
+                { type: "Attendance", value: "87.5%", icon: "📊", status: "Good", trend: "+2.5%" },
+                { type: "Pending Tasks", value: 3, icon: "📋", status: "3 Due Soon", trend: "1 Overdue" },
+                { type: "Average GPA", value: "8.2", icon: "⭐", status: "Excellent", trend: "+0.1" },
+                { type: "Classwork", value: "92%", icon: "✓", status: "On Track", trend: "+5%" }
+            ],
+            recentActivities: [
+                { action: "Assignment submitted", subject: "Web Development", date: "2 hours ago", icon: "✓" },
+                { action: "New classwork assigned", subject: "Data Structures", date: "1 day ago", icon: "📚" },
+                { action: "Grade received", subject: "AI", details: "Mid-term: 42/50", date: "3 days ago", icon: "📈" },
+                { action: "Attendance marked", subject: "Database Management", date: "5 days ago", icon: "✓" },
+                { action: "Assignment deadline extended", subject: "Software Engineering", date: "1 week ago", icon: "📅" }
+            ],
+            attendance: [
+                { date: "2025-11-10", subject: "Data Structures", status: "Present", remarks: "On time" },
+                { date: "2025-11-10", subject: "Web Development", status: "Present", remarks: "On time" },
+                { date: "2025-11-09", subject: "Database Management", status: "Absent", remarks: "Medical reason" },
+                { date: "2025-11-09", subject: "AI", status: "Present", remarks: "On time" },
+                { date: "2025-11-08", subject: "Software Engineering", status: "Leave", remarks: "Personal work" },
+                { date: "2025-11-08", subject: "Data Structures", status: "Present", remarks: "On time" },
+                { date: "2025-11-07", subject: "Web Development", status: "Present", remarks: "On time" },
+                { date: "2025-11-06", subject: "AI", status: "Absent", remarks: "Technical issue" },
+                { date: "2025-11-05", subject: "Database Management", status: "Present", remarks: "On time" },
+                { date: "2025-11-04", subject: "Software Engineering", status: "Present", remarks: "On time" }
+            ],
+            classwork: [
+                { id: 1, subject: "Data Structures", title: "Implement Binary Search Tree", description: "Create a BST with insert, delete, and search operations", dueDate: "2025-11-20", status: "Pending", attachments: ["BST_Template.java"] },
+                { id: 2, subject: "Web Development", title: "Create Responsive E-commerce Site", description: "Build a fully responsive product page with shopping cart", dueDate: "2025-11-18", status: "In Progress", attachments: ["Design_Mockup.pdf"] },
+                { id: 3, subject: "Database Management", title: "Database Normalization Exercise", description: "Normalize given database schema up to 3NF", dueDate: "2025-11-15", status: "Completed", attachments: ["Sample_DB.sql"] },
+                { id: 4, subject: "AI", title: "Implement Decision Tree Algorithm", description: "Implement and optimize decision tree classifier", dueDate: "2025-11-25", status: "Pending", attachments: ["Dataset.csv", "Starter_Code.py"] },
+                { id: 5, subject: "Software Engineering", title: "Design System Architecture Diagram", description: "Create UML diagrams for given business requirements", dueDate: "2025-11-22", status: "In Progress", attachments: ["Requirements.docx"] }
+            ],
+            assignments: [
+                { id: 1, subject: "Web Development", title: "Portfolio Website Project", description: "Design and develop a personal portfolio website using HTML5, CSS3, and JavaScript", dueDate: "2025-11-16", status: "Submitted", grade: 42, maxGrade: 50, feedback: "Great implementation! Missing animations on hover." },
+                { id: 2, subject: "Data Structures", title: "Graph Algorithms Implementation", description: "Implement BFS, DFS, and Dijkstra's algorithm", dueDate: "2025-11-20", status: "Not Submitted", grade: null },
+                { id: 3, subject: "Database Management", title: "SQL Query Optimization", description: "Optimize given SQL queries for better performance", dueDate: "2025-11-12", status: "Submitted", grade: 48, maxGrade: 50 },
+                { id: 4, subject: "AI", title: "Neural Network from Scratch", description: "Build a neural network without using ML libraries", dueDate: "2025-11-25", status: "Not Submitted" },
+                { id: 5, subject: "Software Engineering", title: "Software Documentation", description: "Create comprehensive documentation for a given project", dueDate: "2025-11-18", status: "Submitted", grade: 45, maxGrade: 50 },
+                { id: 6, subject: "Web Development", title: "API Integration Project", description: "Build a weather app using public APIs", dueDate: "2025-11-30", status: "Not Submitted" }
+            ],
+            midSemesterResults: [
+                { subject: "Data Structures", marks: 38, maxMarks: 50 },
+                { subject: "Web Development", marks: 42, maxMarks: 50 },
+                { subject: "Database Management", marks: 45, maxMarks: 50 },
+                { subject: "AI", marks: 40, maxMarks: 50 },
+                { subject: "Software Engineering", marks: 41, maxMarks: 50 }
+            ],
+            finalSemesterResults: [
+                { subject: "Data Structures", marks: 75, maxMarks: 100 },
+                { subject: "Web Development", marks: 82, maxMarks: 100 },
+                { subject: "Database Management", marks: 88, maxMarks: 100 },
+                { subject: "AI", marks: 79, maxMarks: 100 },
+                { subject: "Software Engineering", marks: 81, maxMarks: 100 }
+            ],
+            submissions: {}
+        };
+
+        // Utility Functions
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        function getDaysUntil(dateString) {
+            const today = new Date();
+            const dueDate = new Date(dateString);
+            const diffTime = dueDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
+        }
+
+        function getGradeStatus(daysUntil) {
+            if (daysUntil < 0) return 'urgent';
+            if (daysUntil <= 3) return 'warning';
+            return 'normal';
+        }
+
+        function calculateGrade(percentage) {
+            if (percentage >= 90) return 'A+';
+            if (percentage >= 80) return 'A';
+            if (percentage >= 70) return 'B+';
+            if (percentage >= 60) return 'B';
+            if (percentage >= 50) return 'C';
+            return 'F';
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+            
+            toast.className = 'toast ' + type;
+            toastMessage.textContent = message;
+            toastIcon.textContent = type === 'success' ? '✓' : type === 'error' ? '✕' : '⚠';
+            
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Update Date and Time
+        function updateDateTime() {
+            const now = new Date();
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-IN', dateOptions);
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString('en-IN', timeOptions);
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // Navigation
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.page-section');
+        const headerTitle = document.getElementById('headerTitle');
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const sectionId = item.dataset.section;
+                
+                // Update active nav item
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Update active section
+                sections.forEach(section => section.classList.remove('active'));
+                document.getElementById('section-' + sectionId).classList.add('active');
+                
+                // Update header title
+                headerTitle.textContent = item.textContent.trim();
+                
+                // Close mobile menu
+                sidebar.classList.remove('mobile-open');
+                
+                // Render section content
+                renderSection(sectionId);
+            });
+        });
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('mobile-open');
+        });
+
+        // Render Dashboard
+        function renderDashboard() {
+            // Stats Grid
+            const statsGrid = document.getElementById('statsGrid');
+            statsGrid.innerHTML = appData.dashboardCards.map(card => `
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">${card.icon}</span>
+                        <span class="stat-trend ${card.trend.startsWith('+') ? 'positive' : 'negative'}">${card.trend}</span>
+                    </div>
+                    <div class="stat-value">${card.value}</div>
+                    <div class="stat-label">${card.type}</div>
+                    <div class="stat-status">${card.status}</div>
+                </div>
+            `).join('');
+
+            // Recent Activity
+            const recentActivity = document.getElementById('recentActivity');
+            recentActivity.innerHTML = appData.recentActivities.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-icon">${activity.icon}</div>
+                    <div class="activity-content">
+                        <div class="activity-action">${activity.action}</div>
+                        <div class="activity-details">${activity.subject}${activity.details ? ' - ' + activity.details : ''}</div>
+                        <div class="activity-time">${activity.date}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Upcoming Deadlines
+            const upcomingDeadlines = document.getElementById('upcomingDeadlines');
+            const pendingAssignments = appData.assignments
+                .filter(a => a.status === 'Not Submitted')
+                .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
+                .slice(0, 5);
+            
+            if (pendingAssignments.length === 0) {
+                upcomingDeadlines.innerHTML = '<div class="empty-state">No upcoming deadlines</div>';
+            } else {
+                upcomingDeadlines.innerHTML = pendingAssignments.map(assignment => {
+                    const daysUntil = getDaysUntil(assignment.dueDate);
+                    const status = getGradeStatus(daysUntil);
+                    return `
+                        <div class="activity-item">
+                            <div class="activity-icon">📝</div>
+                            <div class="activity-content">
+                                <div class="activity-action">${assignment.title}</div>
+                                <div class="activity-details">${assignment.subject}</div>
+                                <div class="activity-time due-date ${status}">
+                                    Due: ${formatDate(assignment.dueDate)} (${daysUntil} days)
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        // Render Attendance
+        function renderAttendance() {
+            const subjectFilter = document.getElementById('attendanceSubjectFilter');
+            const monthFilter = document.getElementById('attendanceMonthFilter');
+            
+            // Populate subject filter
+            if (subjectFilter.options.length === 1) {
+                appData.subjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject.name;
+                    option.textContent = subject.name;
+                    subjectFilter.appendChild(option);
+                });
+            }
+            
+            function filterAndRenderAttendance() {
+                const selectedSubject = subjectFilter.value;
+                const selectedMonth = monthFilter.value;
+                
+                let filteredAttendance = appData.attendance;
+                
+                if (selectedSubject !== 'all') {
+                    filteredAttendance = filteredAttendance.filter(a => a.subject === selectedSubject);
+                }
+                
+                if (selectedMonth !== 'all') {
+                    filteredAttendance = filteredAttendance.filter(a => {
+                        const month = new Date(a.date).getMonth() + 1;
+                        return month.toString() === selectedMonth;
+                    });
+                }
+                
+                // Calculate summary
+                const total = filteredAttendance.length;
+                const present = filteredAttendance.filter(a => a.status === 'Present').length;
+                const absent = filteredAttendance.filter(a => a.status === 'Absent').length;
+                const leave = filteredAttendance.filter(a => a.status === 'Leave').length;
+                const percentage = total > 0 ? ((present / total) * 100).toFixed(1) : 0;
+                
+                // Render summary
+                document.getElementById('attendanceSummary').innerHTML = `
+                    <div class="attendance-stat">
+                        <div class="attendance-stat-value" style="color: var(--color-success);">${percentage}%</div>
+                        <div class="attendance-stat-label">Attendance</div>
+                    </div>
+                    <div class="attendance-stat">
+                        <div class="attendance-stat-value" style="color: var(--color-success);">${present}</div>
+                        <div class="attendance-stat-label">Present</div>
+                    </div>
+                    <div class="attendance-stat">
+                        <div class="attendance-stat-value" style="color: var(--color-error);">${absent}</div>
+                        <div class="attendance-stat-label">Absent</div>
+                    </div>
+                    <div class="attendance-stat">
+                        <div class="attendance-stat-value" style="color: var(--color-warning);">${leave}</div>
+                        <div class="attendance-stat-label">Leave</div>
+                    </div>
+                `;
+                
+                // Subject-wise attendance
+                const subjectStats = {};
+                appData.subjects.forEach(subject => {
+                    const subjectAttendance = appData.attendance.filter(a => a.subject === subject.name);
+                    const subjectPresent = subjectAttendance.filter(a => a.status === 'Present').length;
+                    const subjectTotal = subjectAttendance.length;
+                    subjectStats[subject.name] = subjectTotal > 0 ? ((subjectPresent / subjectTotal) * 100).toFixed(1) : 0;
+                });
+                
+                document.getElementById('subjectAttendance').innerHTML = Object.entries(subjectStats).map(([subject, percentage]) => `
+                    <div class="subject-progress">
+                        <div class="subject-name">
+                            <span>${subject}</span>
+                            <span>${percentage}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Render table
+                const tbody = document.getElementById('attendanceTableBody');
+                if (filteredAttendance.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 20px;">No attendance records found</td></tr>';
+                } else {
+                    tbody.innerHTML = filteredAttendance
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .map(record => `
+                            <tr>
+                                <td>${formatDate(record.date)}</td>
+                                <td>${record.subject}</td>
+                                <td>
+                                    <span class="status-badge status-${record.status.toLowerCase()}">
+                                        ${record.status}
+                                    </span>
+                                </td>
+                                <td>${record.remarks}</td>
+                            </tr>
+                        `).join('');
+                }
+            }
+            
+            subjectFilter.addEventListener('change', filterAndRenderAttendance);
+            monthFilter.addEventListener('change', filterAndRenderAttendance);
+            
+            filterAndRenderAttendance();
+        }
+
+        // Render Classwork
+        function renderClasswork() {
+            const subjectFilter = document.getElementById('classworkSubjectFilter');
+            const statusFilter = document.getElementById('classworkStatusFilter');
+            const searchInput = document.getElementById('classworkSearch');
+            
+            // Populate subject filter
+            if (subjectFilter.options.length === 1) {
+                appData.subjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject.name;
+                    option.textContent = subject.name;
+                    subjectFilter.appendChild(option);
+                });
+            }
+            
+            function filterAndRenderClasswork() {
+                const selectedSubject = subjectFilter.value;
+                const selectedStatus = statusFilter.value;
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                let filteredClasswork = appData.classwork.filter(work => {
+                    const matchesSubject = selectedSubject === 'all' || work.subject === selectedSubject;
+                    const matchesStatus = selectedStatus === 'all' || work.status === selectedStatus;
+                    const matchesSearch = work.title.toLowerCase().includes(searchTerm) || work.subject.toLowerCase().includes(searchTerm);
+                    return matchesSubject && matchesStatus && matchesSearch;
+                });
+                
+                const classworkList = document.getElementById('classworkList');
+                if (filteredClasswork.length === 0) {
+                    classworkList.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><p>No classwork found</p></div>';
+                } else {
+                    classworkList.innerHTML = filteredClasswork.map(work => {
+                        const daysUntil = getDaysUntil(work.dueDate);
+                        const status = getGradeStatus(daysUntil);
+                        return `
+                            <div class="work-item">
+                                <div class="work-header">
+                                    <div>
+                                        <h3 class="work-title">${work.title}</h3>
+                                        <p class="work-subject">${work.subject}</p>
+                                    </div>
+                                    <span class="status-badge status-${work.status.toLowerCase().replace(' ', '-')}">${work.status}</span>
+                                </div>
+                                <p class="work-description">${work.description}</p>
+                                <div class="work-footer">
+                                    <span class="due-date ${status}">📅 Due: ${formatDate(work.dueDate)}</span>
+                                    <div>
+                                        ${work.status !== 'Completed' ? `
+                                            <button class="btn btn-primary btn-sm" onclick="markClassworkComplete(${work.id})">Mark Complete</button>
+                                        ` : ''}
+                                        <button class="btn btn-outline btn-sm" onclick="viewClasswork(${work.id})">View Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+            
+            subjectFilter.addEventListener('change', filterAndRenderClasswork);
+            statusFilter.addEventListener('change', filterAndRenderClasswork);
+            searchInput.addEventListener('input', filterAndRenderClasswork);
+            
+            filterAndRenderClasswork();
+        }
+
+        // Render Assignments
+        function renderAssignments() {
+            const subjectFilter = document.getElementById('assignmentSubjectFilter');
+            const statusFilter = document.getElementById('assignmentStatusFilter');
+            const searchInput = document.getElementById('assignmentSearch');
+            
+            // Populate subject filter
+            if (subjectFilter.options.length === 1) {
+                appData.subjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject.name;
+                    option.textContent = subject.name;
+                    subjectFilter.appendChild(option);
+                });
+            }
+            
+            function filterAndRenderAssignments() {
+                const selectedSubject = subjectFilter.value;
+                const selectedStatus = statusFilter.value;
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                let filteredAssignments = appData.assignments.filter(assignment => {
+                    const matchesSubject = selectedSubject === 'all' || assignment.subject === selectedSubject;
+                    const matchesStatus = selectedStatus === 'all' || assignment.status === selectedStatus;
+                    const matchesSearch = assignment.title.toLowerCase().includes(searchTerm) || assignment.subject.toLowerCase().includes(searchTerm);
+                    return matchesSubject && matchesStatus && matchesSearch;
+                });
+                
+                const assignmentList = document.getElementById('assignmentList');
+                if (filteredAssignments.length === 0) {
+                    assignmentList.innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><p>No assignments found</p></div>';
+                } else {
+                    assignmentList.innerHTML = filteredAssignments.map(assignment => {
+                        const daysUntil = getDaysUntil(assignment.dueDate);
+                        const status = getGradeStatus(daysUntil);
+                        const hasGrade = assignment.grade !== null && assignment.grade !== undefined;
+                        
+                        return `
+                            <div class="work-item">
+                                <div class="work-header">
+                                    <div>
+                                        <h3 class="work-title">${assignment.title}</h3>
+                                        <p class="work-subject">${assignment.subject}</p>
+                                    </div>
+                                    <span class="status-badge status-${assignment.status.toLowerCase().replace(' ', '-')}">${assignment.status}</span>
+                                </div>
+                                <p class="work-description">${assignment.description}</p>
+                                ${hasGrade ? `
+                                    <div style="margin: 12px 0; padding: 12px; background-color: var(--color-bg-3); border-radius: var(--radius-base);">
+                                        <strong>Grade:</strong> ${assignment.grade}/${assignment.maxGrade} (${((assignment.grade / assignment.maxGrade) * 100).toFixed(1)}%)
+                                        ${assignment.feedback ? `<br><strong>Feedback:</strong> ${assignment.feedback}` : ''}
+                                    </div>
+                                ` : ''}
+                                <div class="work-footer">
+                                    <span class="due-date ${status}">📅 Due: ${formatDate(assignment.dueDate)}</span>
+                                    <div>
+                                        ${assignment.status === 'Not Submitted' ? `
+                                            <button class="btn btn-primary btn-sm" onclick="submitAssignment(${assignment.id})">Submit</button>
+                                        ` : ''}
+                                        <button class="btn btn-outline btn-sm" onclick="viewAssignment(${assignment.id})">View Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+            
+            subjectFilter.addEventListener('change', filterAndRenderAssignments);
+            statusFilter.addEventListener('change', filterAndRenderAssignments);
+            searchInput.addEventListener('input', filterAndRenderAssignments);
+            
+            filterAndRenderAssignments();
+        }
+
+        // Render Results
+        function renderResults() {
+            const midSemTab = document.getElementById('midSemTab');
+            const finalSemTab = document.getElementById('finalSemTab');
+            const overallTab = document.getElementById('overallTab');
+            const resultsContent = document.getElementById('resultsContent');
+            
+            function showMidSem() {
+                midSemTab.className = 'btn btn-primary';
+                finalSemTab.className = 'btn btn-secondary';
+                overallTab.className = 'btn btn-secondary';
+                
+                resultsContent.innerHTML = appData.midSemesterResults.map(result => {
+                    const percentage = ((result.marks / result.maxMarks) * 100).toFixed(1);
+                    const grade = calculateGrade(percentage);
+                    const subjectInfo = appData.subjects.find(s => s.name === result.subject);
+                    
+                    return `
+                        <div class="grade-card">
+                            <div class="grade-header">
+                                <div class="subject-info">
+                                    <h3>${result.subject}</h3>
+                                    <p class="subject-code">${subjectInfo ? subjectInfo.code : ''}</p>
+                                </div>
+                                <div class="grade-badge">${grade}</div>
+                            </div>
+                            <div class="grade-details">
+                                <div class="grade-item">
+                                    <div class="grade-label">Marks Obtained</div>
+                                    <div class="grade-value">${result.marks}</div>
+                                </div>
+                                <div class="grade-item">
+                                    <div class="grade-label">Max Marks</div>
+                                    <div class="grade-value">${result.maxMarks}</div>
+                                </div>
+                                <div class="grade-item">
+                                    <div class="grade-label">Percentage</div>
+                                    <div class="grade-value">${percentage}%</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            function showFinalSem() {
+                midSemTab.className = 'btn btn-secondary';
+                finalSemTab.className = 'btn btn-primary';
+                overallTab.className = 'btn btn-secondary';
+                
+                resultsContent.innerHTML = appData.finalSemesterResults.map(result => {
+                    const percentage = ((result.marks / result.maxMarks) * 100).toFixed(1);
+                    const grade = calculateGrade(percentage);
+                    const subjectInfo = appData.subjects.find(s => s.name === result.subject);
+                    
+                    return `
+                        <div class="grade-card">
+                            <div class="grade-header">
+                                <div class="subject-info">
+                                    <h3>${result.subject}</h3>
+                                    <p class="subject-code">${subjectInfo ? subjectInfo.code : ''}</p>
+                                </div>
+                                <div class="grade-badge">${grade}</div>
+                            </div>
+                            <div class="grade-details">
+                                <div class="grade-item">
+                                    <div class="grade-label">Marks Obtained</div>
+                                    <div class="grade-value">${result.marks}</div>
+                                </div>
+                                <div class="grade-item">
+                                    <div class="grade-label">Max Marks</div>
+                                    <div class="grade-value">${result.maxMarks}</div>
+                                </div>
+                                <div class="grade-item">
+                                    <div class="grade-label">Percentage</div>
+                                    <div class="grade-value">${percentage}%</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            function showOverall() {
+                midSemTab.className = 'btn btn-secondary';
+                finalSemTab.className = 'btn btn-secondary';
+                overallTab.className = 'btn btn-primary';
+                
+                resultsContent.innerHTML = appData.subjects.map(subject => {
+                    const midResult = appData.midSemesterResults.find(r => r.subject === subject.name);
+                    const finalResult = appData.finalSemesterResults.find(r => r.subject === subject.name);
+                    
+                    const midMarks = midResult ? midResult.marks : 0;
+                    const finalMarks = finalResult ? finalResult.marks : 0;
+                    const totalMarks = midMarks + finalMarks;
+                    const maxTotal = 150;
+                    const percentage = ((totalMarks / maxTotal) * 100).toFixed(1);
+                    const grade = calculateGrade(percentage);
+                    
+                    return `
+                        <div class="grade-card">
+                            <div class="grade-header">
+                                <div class="subject-info">
+                                    <h3>${subject.name}</h3>
+                                    <p class="subject-code">${subject.code} - ${subject.instructor}</p>
+                                </div>
+                                <div class="grade-badge">${grade}</div>
+                            </div>
+                            <div class="grade-details">
+                                <div class="grade-item">
+                                    <div class="grade-label">Mid Semester</div>
+                                    <div class="grade-value">${midMarks}/50</div>
+                                </div>
+                                <div class="grade-item">
+                                    <div class="grade-label">Final Semester</div>
+                                    <div class="grade-value">${finalMarks}/100</div>
+                                </div>
+                                <div class="grade-item">
+                                    <div class="grade-label">Total</div>
+                                    <div class="grade-value">${totalMarks}/150</div>
+                                </div>
+                                <div class="grade-item">
+                                    <div class="grade-label">Percentage</div>
+                                    <div class="grade-value">${percentage}%</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            midSemTab.addEventListener('click', showMidSem);
+            finalSemTab.addEventListener('click', showFinalSem);
+            overallTab.addEventListener('click', showOverall);
+            
+            showMidSem();
+        }
+
+        // Render Profile
+        function renderProfile() {
+            document.getElementById('profileName').textContent = appData.student.name;
+            document.getElementById('profileId').textContent = appData.student.id;
+            
+            document.getElementById('profileInfo').innerHTML = `
+                <div class="info-item">
+                    <div class="info-label">Email</div>
+                    <div class="info-value">${appData.student.email}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Phone</div>
+                    <div class="info-value">${appData.student.phone}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Department</div>
+                    <div class="info-value">${appData.student.department}</div>
+                </div>
+            `;
+            
+            document.getElementById('academicInfo').innerHTML = `
+                <div class="info-item">
+                    <div class="info-label">Current Semester</div>
+                    <div class="info-value">Semester ${appData.student.semester}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Batch</div>
+                    <div class="info-value">${appData.student.batch}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Student ID</div>
+                    <div class="info-value">${appData.student.id}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Overall GPA</div>
+                    <div class="info-value">${appData.metrics.averageGPA}/10.0</div>
+                </div>
+            `;
+        }
+
+        // Render Section
+        function renderSection(sectionId) {
+            switch(sectionId) {
+                case 'dashboard':
+                    renderDashboard();
+                    break;
+                case 'attendance':
+                    renderAttendance();
+                    break;
+                case 'classwork':
+                    renderClasswork();
+                    break;
+                case 'assignments':
+                    renderAssignments();
+                    break;
+                case 'results':
+                    renderResults();
+                    break;
+                case 'profile':
+                    renderProfile();
+                    break;
+            }
+        }
+
+        // Modal Functions
+        const modal = document.getElementById('assignmentModal');
+        const modalClose = document.getElementById('modalClose');
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        function viewClasswork(id) {
+            const work = appData.classwork.find(w => w.id === id);
+            if (!work) return;
+            
+            document.getElementById('modalTitle').textContent = work.title;
+            document.getElementById('modalBody').innerHTML = `
+                <div class="form-group">
+                    <div class="form-label">Subject</div>
+                    <div>${work.subject}</div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Description</div>
+                    <div>${work.description}</div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Due Date</div>
+                    <div>${formatDate(work.dueDate)}</div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Status</div>
+                    <div><span class="status-badge status-${work.status.toLowerCase().replace(' ', '-')}">${work.status}</span></div>
+                </div>
+                ${work.attachments.length > 0 ? `
+                    <div class="form-group">
+                        <div class="form-label">Attachments</div>
+                        ${work.attachments.map(att => `<div>📎 ${att}</div>`).join('')}
+                    </div>
+                ` : ''}
+            `;
+            document.getElementById('modalFooter').innerHTML = `
+                <button class="btn btn-secondary" onclick="document.getElementById('assignmentModal').classList.remove('active')">Close</button>
+            `;
+            modal.classList.add('active');
+        }
+
+        function viewAssignment(id) {
+            const assignment = appData.assignments.find(a => a.id === id);
+            if (!assignment) return;
+            
+            document.getElementById('modalTitle').textContent = assignment.title;
+            document.getElementById('modalBody').innerHTML = `
+                <div class="form-group">
+                    <div class="form-label">Subject</div>
+                    <div>${assignment.subject}</div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Description</div>
+                    <div>${assignment.description}</div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Due Date</div>
+                    <div>${formatDate(assignment.dueDate)}</div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Status</div>
+                    <div><span class="status-badge status-${assignment.status.toLowerCase().replace(' ', '-')}">${assignment.status}</span></div>
+                </div>
+                ${assignment.grade !== null && assignment.grade !== undefined ? `
+                    <div class="form-group">
+                        <div class="form-label">Grade</div>
+                        <div style="font-size: 24px; font-weight: bold; color: var(--color-success);">${assignment.grade}/${assignment.maxGrade}</div>
+                    </div>
+                ` : ''}
+                ${assignment.feedback ? `
+                    <div class="form-group">
+                        <div class="form-label">Feedback</div>
+                        <div style="padding: 12px; background-color: var(--color-bg-3); border-radius: var(--radius-base);">${assignment.feedback}</div>
+                    </div>
+                ` : ''}
+            `;
+            document.getElementById('modalFooter').innerHTML = `
+                ${assignment.status === 'Not Submitted' ? `<button class="btn btn-primary" onclick="submitAssignment(${id})">Submit Assignment</button>` : ''}
+                <button class="btn btn-secondary" onclick="document.getElementById('assignmentModal').classList.remove('active')">Close</button>
+            `;
+            modal.classList.add('active');
+        }
+
+        function submitAssignment(id) {
+            const assignment = appData.assignments.find(a => a.id === id);
+            if (!assignment) return;
+            
+            document.getElementById('modalTitle').textContent = 'Submit: ' + assignment.title;
+            document.getElementById('modalBody').innerHTML = `
+                <div class="form-group">
+                    <div class="form-label">Subject</div>
+                    <div>${assignment.subject}</div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Due Date</div>
+                    <div>${formatDate(assignment.dueDate)}</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Upload File *</label>
+                    <div class="file-upload" onclick="this.querySelector('input').click()">
+                        <input type="file" id="assignmentFile" onchange="document.getElementById('fileName').textContent = this.files[0]?.name || ''">
+                        <div>📎 Click to select file</div>
+                        <div class="file-name" id="fileName"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Comments (Optional)</label>
+                    <textarea class="form-textarea" id="assignmentComments" placeholder="Add any comments about your submission..."></textarea>
+                </div>
+            `;
+            document.getElementById('modalFooter').innerHTML = `
+                <button class="btn btn-secondary" onclick="document.getElementById('assignmentModal').classList.remove('active')">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmSubmitAssignment(${id})">Submit</button>
+            `;
+            modal.classList.add('active');
+        }
+
+        function confirmSubmitAssignment(id) {
+            const file = document.getElementById('assignmentFile').files[0];
+            const comments = document.getElementById('assignmentComments').value;
+            
+            if (!file) {
+                showToast('Please select a file to submit', 'error');
+                return;
+            }
+            
+            const assignment = appData.assignments.find(a => a.id === id);
+            assignment.status = 'Submitted';
+            
+            appData.submissions[id] = {
+                fileName: file.name,
+                comments: comments,
+                submittedAt: new Date().toISOString()
+            };
+            
+            modal.classList.remove('active');
+            showToast('Assignment submitted successfully!', 'success');
+            
+            // Update pending assignments count
+            appData.metrics.pendingAssignments = appData.assignments.filter(a => a.status === 'Not Submitted').length;
+            document.getElementById('notificationBadge').textContent = appData.metrics.pendingAssignments;
+            
+            renderAssignments();
+        }
+
+        function markClassworkComplete(id) {
+            const work = appData.classwork.find(w => w.id === id);
+            if (!work) return;
+            
+            work.status = 'Completed';
+            showToast('Classwork marked as completed!', 'success');
+            renderClasswork();
+        }
+
+        // Settings
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('click', () => {
+            darkModeToggle.classList.toggle('active');
+            const isDark = darkModeToggle.classList.contains('active');
+            document.documentElement.setAttribute('data-color-scheme', isDark ? 'dark' : 'light');
+            showToast(`${isDark ? 'Dark' : 'Light'} mode enabled`, 'success');
+        });
+
+        // Initialize
+        renderDashboard();
+    </script>
+</body>
+</html>
